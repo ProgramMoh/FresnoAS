@@ -237,21 +237,3 @@ export default async function CarDetailsPage({ params }: { params: Promise<{ slu
     </div>
   );
 }
-/* REQUIRED FOR GITHUB PAGES:
-  This function fetches all car slugs during the build time 
-  so Next.js can generate an HTML file for every single car.
-*/
-export async function generateStaticParams() {
-  // 1. Fetch ALL car slugs from Sanity
-  const cars = await client.fetch(`*[_type == "car"]{ "slug": slug.current }`);
-
-  // 2. Return an array of objects: [{ slug: 'porsche-911' }, { slug: 'bmw-m3' }, ...]
-  return cars.map((car: any) => ({
-    slug: car.slug,
-  }));
-}
-
-// Optional: detailed strictness setting
-// false = 404 if the car wasn't found during build
-// true = (default) allows on-demand generation (doesn't work on GitHub Pages)
-export const dynamicParams = false;
