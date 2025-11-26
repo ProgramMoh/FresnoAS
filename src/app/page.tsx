@@ -7,12 +7,13 @@ import { motion, AnimatePresence } from "framer-motion"; // Added AnimatePresenc
 import { ArrowRight, Star } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 
-// --- CONFIGURATION ---
+const BASE_PATH = "/FresnoAS"; 
+
 const HERO_IMAGES = [
-  "/hero1.png",
-  "/hero2.png",
-  "/hero3.png",
-  "/hero4.png"
+  `${BASE_PATH}/hero1.png`,
+  `${BASE_PATH}/hero2.png`,
+  `${BASE_PATH}/hero3.png`,
+  `${BASE_PATH}/hero4.png`
 ];
 
 const CARS_QUERY = `*[_type == "car"] {
