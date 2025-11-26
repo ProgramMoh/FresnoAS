@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true, // <--- CRITICAL: GitHub Pages cannot optimize images on the fly
   },
+    basePath: "/FresnoAS",
+
 };
 
 export default nextConfig;
