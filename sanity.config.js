@@ -9,6 +9,8 @@ export default defineConfig({
 
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  appId: process.env.NEXT_PUBLIC_SANITY_APPID,
+
 
   basePath: '/studio', // This makes the dashboard live at /studio
 

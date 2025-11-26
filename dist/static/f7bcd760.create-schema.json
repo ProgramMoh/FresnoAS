@@ -1,0 +1,79 @@
+[
+  {
+    "fields": [
+      {
+        "name": "name",
+        "type": "string",
+        "title": "Car Name (e.g. 2018 Honda Civic)"
+      },
+      {
+        "options": {
+          "source": "name"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug",
+        "title": "Slug (URL - click generate)"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Available",
+              "value": "available"
+            },
+            {
+              "title": "Sold",
+              "value": "sold"
+            },
+            {
+              "title": "Pending",
+              "value": "pending"
+            }
+          ]
+        },
+        "name": "status",
+        "type": "string",
+        "title": "Availability"
+      },
+      {
+        "name": "price",
+        "type": "number",
+        "title": "Price (Cash)"
+      },
+      {
+        "name": "mileage",
+        "type": "number"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "mainImage",
+        "type": "image"
+      },
+      {
+        "of": [
+          {
+            "type": "image"
+          }
+        ],
+        "name": "gallery",
+        "type": "array",
+        "title": "Gallery Images"
+      }
+    ],
+    "name": "car",
+    "type": "document",
+    "title": "Car Inventory"
+  }
+]
