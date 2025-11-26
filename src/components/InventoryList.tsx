@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Search, SlidersHorizontal, ArrowRight, Fuel, Gauge } from "lucide-react";
+import { Search, ArrowRight, Gauge, Fuel } from "lucide-react";
 
 interface Car {
   _id: string;
@@ -30,129 +30,119 @@ export default function InventoryList({ cars }: { cars: Car[] }) {
 
   return (
     <div>
-      {/* --- FLOATING SEARCH BAR (Dark Mode) --- */}
-      <div className="bg-slate-900/80 backdrop-blur-md p-2 rounded-2xl border border-slate-800 mb-12 flex flex-col md:flex-row gap-4 items-center max-w-4xl mx-auto shadow-2xl shadow-black/20">
+      {/* --- MINIMALIST FILTER BAR --- */}
+      <div className="mb-16 flex flex-col md:flex-row gap-8 md:items-end justify-between">
         
-        {/* Search Input */}
-        <div className="relative flex-1 w-full">
-            <Search className="absolute left-4 top-3.5 text-slate-500 w-5 h-5" />
-            <input
-                type="text"
-                placeholder="Search by make or model..."
-                className="w-full bg-transparent pl-12 pr-4 py-3 rounded-xl outline-none text-white placeholder:text-slate-500 font-medium focus:bg-slate-800/50 transition-colors"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-            />
+        {/* Search Input - Sharp & Underlined */}
+        <div className="w-full md:w-1/3 group">
+            <label className="text-xs uppercase tracking-widest text-gray-500 mb-2 block font-semibold">Search Collection</label>
+            <div className="relative border-b border-white/20 group-focus-within:border-white transition-colors duration-300">
+                <Search className="absolute left-0 top-3 text-gray-500 w-4 h-4" />
+                <input
+                    type="text"
+                    placeholder="Make, Model, or ID..."
+                    className="w-full bg-transparent pl-8 pr-4 py-3 outline-none text-white placeholder:text-gray-600 font-light"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
         </div>
 
-        {/* Divider */}
-        <div className="hidden md:block w-px h-8 bg-slate-800"></div>
-
-        {/* Sort Dropdown */}
-        <div className="w-full md:w-auto px-4">
-             <div className="flex items-center gap-2">
-                <SlidersHorizontal className="text-purple-500 w-4 h-4" />
+        {/* Sort Dropdown - Minimalist */}
+        <div className="w-full md:w-auto">
+             <label className="text-xs uppercase tracking-widest text-gray-500 mb-2 block font-semibold">Sort By</label>
+             <div className="relative border-b border-white/20 hover:border-white transition-colors duration-300 min-w-[200px]">
                 <select
-                    className="py-2 pr-8 bg-transparent border-none font-bold text-sm text-slate-300 cursor-pointer focus:ring-0 outline-none hover:text-white transition-colors"
+                    className="w-full py-3 bg-transparent border-none font-light text-white cursor-pointer focus:ring-0 outline-none appearance-none"
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
                 >
-                    <option value="newest" className="bg-slate-900 text-white">Newest First</option>
-                    <option value="price-asc" className="bg-slate-900 text-white">Price: Lowest</option>
-                    <option value="price-desc" className="bg-slate-900 text-white">Price: Highest</option>
+                    <option value="newest" className="bg-black text-white">Newest Arrivals</option>
+                    <option value="price-asc" className="bg-black text-white">Price: Low to High</option>
+                    <option value="price-desc" className="bg-black text-white">Price: High to Low</option>
                 </select>
+                {/* Custom Chevron */}
+                <div className="absolute right-0 top-4 pointer-events-none">
+                    <div className="h-[2px] w-[2px] bg-white rounded-full"></div>
+                </div>
              </div>
         </div>
       </div>
 
-      {/* --- CINEMATIC CARDS GRID --- */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* --- LUXURY GRID --- */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
         {filteredCars.length > 0 ? (
           filteredCars.map((car, index) => (
             <motion.div
               key={car._id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="group"
+              transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+              className="group cursor-pointer"
             >
                 <Link href={`/inventory/${car.slug?.current}`}>
-                    {/* CARD CONTAINER: Dark slate, subtle border */}
-                    <div className="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-lg hover:shadow-purple-900/20 hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+                    {/* CARD CONTAINER */}
+                    <div className="flex flex-col h-full">
                         
-                        {/* Image */}
-                        <div className="aspect-[4/3] bg-slate-950 relative overflow-hidden">
+                        {/* Image - Sharp Edges, Zoom Effect */}
+                        <div className="aspect-[4/3] relative overflow-hidden bg-zinc-900 mb-6 border-b border-white/10">
                             {car.imageUrl ? (
                             <img
                                 src={car.imageUrl}
                                 alt={car.name}
-                                className="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 ease-in-out"
+                                className="w-full h-full object-cover transform group-hover:scale-105 transition duration-1000 ease-in-out opacity-90 group-hover:opacity-100"
                             />
                             ) : (
-                                <div className="w-full h-full flex items-center justify-center text-slate-700">No Image</div>
+                                <div className="w-full h-full flex items-center justify-center text-zinc-700 font-light uppercase tracking-widest text-xs">Awaiting Image</div>
                             )}
                             
-                            {/* Cinematic Gradient Overlay (Bottom) */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
-
-                            {/* Badge */}
-                            <div className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur border border-slate-700 text-xs font-bold px-3 py-1 rounded-full text-white shadow-sm">
-                                Stock Ready
-                            </div>
+                            {/* Subtle Gradient for depth */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
                         </div>
 
                         {/* Content */}
-                        <div className="p-6 flex flex-col flex-1">
-                            <div className="flex justify-between items-start mb-4">
-                                <div>
-                                    <h3 className="text-xl font-bold text-white leading-tight group-hover:text-purple-400 transition-colors">{car.name}</h3>
-                                    <p className="text-xs text-slate-500 mt-1 font-mono uppercase tracking-wider">Ref: {car._id.slice(0,6)}</p>
-                                </div>
+                        <div className="flex flex-col flex-1">
+                            {/* Title & Price Row */}
+                            <div className="flex justify-between items-baseline mb-4">
+                                <h3 className="text-xl font-bold text-white tracking-tight">{car.name}</h3>
+                                <p className="text-lg font-light text-white">${car.price?.toLocaleString()}</p>
                             </div>
                             
-                            <div className="mb-6">
-                                <p className="text-2xl font-light text-white">${car.price?.toLocaleString()}</p>
-                            </div>
+                            <div className="h-px w-full bg-white/10 mb-5 group-hover:bg-white/30 transition-colors duration-500"></div>
 
-                            {/* Quick Specs Pill */}
-                            <div className="flex gap-2 mb-6 mt-auto">
-                                <div className="inline-flex items-center gap-1.5 bg-slate-800 border border-slate-700 px-3 py-2 rounded-lg text-xs font-medium text-slate-300">
-                                    <Gauge className="w-3.5 h-3.5 text-purple-500" />
-                                    {car.mileage?.toLocaleString()} mi
+                            {/* WIDGETS: Re-imagined as Technical Specs */}
+                            <div className="grid grid-cols-2 gap-4 mb-8">
+                                <div className="flex items-center gap-3 text-gray-400">
+                                    <Gauge strokeWidth={1.5} className="w-4 h-4 text-gray-500" />
+                                    <span className="text-xs uppercase tracking-widest">{car.mileage?.toLocaleString()} Mi</span>
                                 </div>
-                                <div className="inline-flex items-center gap-1.5 bg-slate-800 border border-slate-700 px-3 py-2 rounded-lg text-xs font-medium text-slate-300">
-                                    <Fuel className="w-3.5 h-3.5 text-pink-500" />
-                                    Gas
+                                <div className="flex items-center gap-3 text-gray-400">
+                                    <Fuel strokeWidth={1.5} className="w-4 h-4 text-gray-500" />
+                                    <span className="text-xs uppercase tracking-widest">Gasoline</span>
                                 </div>
                             </div>
 
-                            <button className="w-full py-3.5 rounded-xl bg-white text-slate-950 font-bold text-sm flex items-center justify-center gap-2 group-hover:gap-3 transition-all relative overflow-hidden group/btn">
-                                <span className="relative z-10">View Details</span>
-                                <ArrowRight className="w-4 h-4 relative z-10" />
-                                {/* Button Hover Gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
-                                <span className="absolute inset-0 flex items-center justify-center gap-2 text-white opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 z-20">
-                                    View Details <ArrowRight className="w-4 h-4" />
-                                </span>
-                            </button>
+                            {/* CTA Button - Matches Home Page Style */}
+                            <div className="mt-auto">
+                                <button className="w-full py-4 bg-transparent border border-white/20 text-white font-bold text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-black hover:border-white transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+                                    View Details
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </Link>
             </motion.div>
           ))
         ) : (
-          <div className="col-span-full py-20 text-center">
-             <div className="bg-slate-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 border border-slate-800">
-                <Search className="text-slate-500" />
-             </div>
-            <h3 className="text-xl font-bold text-white mb-2">No cars found</h3>
-            <p className="text-slate-500 max-w-md mx-auto">We couldn't find any vehicles matching your search. Try adjusting your filters.</p>
+          <div className="col-span-full py-32 text-center border-t border-white/5">
+            <h3 className="text-2xl font-light text-white mb-2">No vehicles found.</h3>
+            <p className="text-gray-500 font-light mb-8">Adjust your criteria to view more of the collection.</p>
             <button 
                 onClick={() => { setSearchTerm(""); setSortBy("newest"); }} 
-                className="mt-6 text-purple-400 font-bold hover:text-purple-300 transition-colors uppercase text-xs tracking-widest"
+                className="text-white border-b border-white pb-1 text-sm uppercase tracking-widest hover:opacity-70 transition-opacity"
             >
-                Clear All Filters
+                Reset Filters
             </button>
           </div>
         )}

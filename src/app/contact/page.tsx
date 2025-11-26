@@ -6,7 +6,7 @@ import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 
 export default function ContactPage() {
   return (
-    <div className="bg-slate-950 min-h-screen text-white selection:bg-purple-500/30">
+    <div className="bg-luxury-black min-h-screen text-white selection:bg-purple-800/30">
       <Navbar />
 
       {/* Background Elements */}
