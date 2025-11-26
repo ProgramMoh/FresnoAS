@@ -1,141 +1,143 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Navbar from "@/components/Navbar";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import Navbar from "@/components/Navbar"; 
+import { MapPin, Phone, Mail, ArrowRight } from "lucide-react";
 
 export default function ContactPage() {
   return (
-    <div className="bg-luxury-black min-h-screen text-white selection:bg-purple-800/30">
+    <div className="bg-luxury-black min-h-screen text-white selection:bg-purple-500/30 overflow-x-hidden relative">
       <Navbar />
-
-      {/* Background Elements */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-900/20 blur-[120px] rounded-full" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-red-900/10 blur-[120px] rounded-full" />
-      </div>
-
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 lg:py-32">
         
-        {/* Header */}
-        <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-20"
-        >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-              Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-red-500">Touch.</span>
-            </h1>
-            <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
-              Experience our premium service firsthand. Visit our showroom or schedule a private viewing of our exclusive inventory.
-            </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           
-          {/* Left: Contact Info */}
+          {/* --- LEFT COLUMN: INFO --- */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-10"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="space-y-12 pt-4"
           >
-            {/* Info Cards */}
-            <div className="space-y-6">
+            <div>
+                {/* Crisp Accent Line */}
+                <div className="flex items-center gap-4 mb-6">
+                    <div className="h-px w-12 bg-gradient-to-r from-purple-500 to-red-500"></div>
+                    <span className="text-luxury-silver uppercase tracking-[0.3em] text-xs font-bold">
+                        Concierge Service
+                    </span>
+                </div>
+                
+                <h1 className="text-6xl md:text-7xl font-bold mb-6 tracking-tight leading-[0.9] text-white">
+                  Get in <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-red-500">Touch.</span>
+                </h1>
+                
+                <p className="text-gray-400 text-lg font-light leading-relaxed max-w-md mt-8 border-l border-white/10 pl-6">
+                  Experience our premium service firsthand. Visit our showroom or schedule a private viewing of our exclusive inventory.
+                </p>
+            </div>
+
+            {/* Clean, Aligned Contact Info with Icons */}
+            <div className="space-y-8 pt-4">
                 {[
                     { 
-                        icon: MapPin, 
-                        title: "Visit Our Showroom", 
-                        details: ["3808 E Belmont Ave", "Fresno, CA 93702"],
-                        color: "from-purple-500 to-indigo-600"
+                        icon: MapPin,
+                        title: "Showroom", 
+                        line1: "3808 E Belmont Ave",
+                        line2: "Fresno, CA 93702"
                     },
                     { 
-                        icon: Phone, 
-                        title: "Call Us Directly", 
-                        details: ["(559) 233-2001", "Mon-Fri, 9am-7pm"],
-                        color: "from-pink-500 to-rose-500"
+                        icon: Phone,
+                        title: "Direct Line", 
+                        line1: "(559) 233-2001",
+                        line2: "Mon-Fri, 9am-7pm"
                     },
                     { 
-                        icon: Mail, 
-                        title: "Email Support", 
-                        details: ["sales@fresnoauto.com", "finance@fresnoauto.com"],
-                        color: "from-red-500 to-orange-500"
+                        icon: Mail,
+                        title: "Inquiries", 
+                        line1: "sales@fresnoauto.com",
+                        line2: "Response within 24h"
                     }
                 ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-5 group p-4 rounded-2xl hover:bg-slate-900/50 transition-colors duration-300">
-                        <div className={`p-3 rounded-xl bg-gradient-to-br ${item.color} shadow-lg shadow-purple-900/20 group-hover:scale-110 transition-transform duration-300`}>
-                            <item.icon size={24} className="text-white" />
+                    <div key={i} className="flex items-start gap-6 group cursor-default">
+                        {/* Architectural Icon Box */}
+                        <div className="w-12 h-12 flex items-center justify-center bg-[#111] border border-white/10 group-hover:border-purple-500/50 group-hover:text-purple-400 transition-all duration-300">
+                            <item.icon size={20} strokeWidth={1.5} />
                         </div>
+                        
                         <div>
-                            <h3 className="font-bold text-lg text-white mb-1 group-hover:text-purple-400 transition-colors">{item.title}</h3>
-                            {item.details.map((line, idx) => (
-                                <p key={idx} className="text-slate-400 font-light">{line}</p>
-                            ))}
+                            <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-2 flex items-center gap-2">
+                                {item.title} 
+                            </h3>
+                            <p className="text-gray-300 font-light text-xl leading-none mb-1">{item.line1}</p>
+                            <p className="text-gray-500 text-sm">{item.line2}</p>
                         </div>
                     </div>
                 ))}
             </div>
-
-            {/* Hours Block */}
-            <div className="bg-slate-900/50 border border-slate-800 p-8 rounded-2xl">
-                <div className="flex items-center gap-3 mb-6">
-                    <Clock className="text-purple-400" />
-                    <h3 className="font-bold text-xl">Operating Hours</h3>
-                </div>
-                <div className="space-y-3 text-slate-300">
-                    <div className="flex justify-between border-b border-slate-800 pb-2">
-                        <span>Mon - Sat</span>
-                        <span className="font-medium text-white">9:30 AM - 6:00 PM</span>
-                    </div>
-                    <div className="flex justify-between text-slate-500">
-                        <span>Sunday</span>
-                        <span>Closed</span>
-                    </div>
-                </div>
-            </div>
           </motion.div>
 
-          {/* Right: Contact Form */}
+          {/* --- RIGHT COLUMN: STRUCTURED FORM --- */}
           <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl shadow-purple-900/10 relative overflow-hidden group"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="relative"
           >
-            {/* Decorative Gradient Border Effect */}
-            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500" />
+            {/* Architectural Container: Defined Border & Solid Background */}
+            <div className="bg-[#080808] border border-white/10 p-8 md:p-10 shadow-2xl relative overflow-hidden group">
+                
+                {/* Subtle top border gradient (controlled color) */}
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-            <h2 className="text-3xl font-bold text-slate-900 mb-2">Send a Message</h2>
-            <p className="text-slate-500 mb-8">Have a specific car in mind? Let us know.</p>
+                <h2 className="text-2xl font-light mb-10 text-white">Send a Message</h2>
 
-            <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                        <label className="text-xs font-bold uppercase tracking-wider text-slate-500">First Name</label>
-                        <input type="text" className="w-full bg-slate-100 border-none rounded-lg px-4 py-3 text-slate-900 focus:ring-2 focus:ring-purple-500 transition-all outline-none" placeholder="Jane" />
+                <form className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Boxed Inputs for Depth */}
+                        <div className="space-y-2">
+                            <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">First Name</label>
+                            <input 
+                                type="text" 
+                                className="w-full bg-[#111] border border-white/5 px-4 py-4 text-white focus:outline-none focus:border-purple-500/50 focus:bg-[#151515] transition-all duration-300 placeholder-white/10 text-sm" 
+                                placeholder="JANE"
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Last Name</label>
+                            <input 
+                                type="text" 
+                                className="w-full bg-[#111] border border-white/5 px-4 py-4 text-white focus:outline-none focus:border-purple-500/50 focus:bg-[#151515] transition-all duration-300 placeholder-white/10 text-sm" 
+                                placeholder="DOE"
+                            />
+                        </div>
                     </div>
+
                     <div className="space-y-2">
-                        <label className="text-xs font-bold uppercase tracking-wider text-slate-500">Last Name</label>
-                        <input type="text" className="w-full bg-slate-100 border-none rounded-lg px-4 py-3 text-slate-900 focus:ring-2 focus:ring-purple-500 transition-all outline-none" placeholder="Doe" />
+                        <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Email Address</label>
+                        <input 
+                            type="email" 
+                            className="w-full bg-[#111] border border-white/5 px-4 py-4 text-white focus:outline-none focus:border-purple-500/50 focus:bg-[#151515] transition-all duration-300 placeholder-white/10 text-sm" 
+                            placeholder="JANE@EXAMPLE.COM"
+                        />
                     </div>
-                </div>
 
-                <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-wider text-slate-500">Email Address</label>
-                    <input type="email" className="w-full bg-slate-100 border-none rounded-lg px-4 py-3 text-slate-900 focus:ring-2 focus:ring-purple-500 transition-all outline-none" placeholder="jane@example.com" />
-                </div>
+                    <div className="space-y-2">
+                        <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Message</label>
+                        <textarea 
+                            className="w-full bg-[#111] border border-white/5 px-4 py-4 text-white focus:outline-none focus:border-purple-500/50 focus:bg-[#151515] transition-all duration-300 placeholder-white/10 text-sm resize-none h-32" 
+                            placeholder="I AM INTERESTED IN..."
+                        ></textarea>
+                    </div>
 
-                <div className="space-y-2">
-                    <label className="text-xs font-bold uppercase tracking-wider text-slate-500">Message</label>
-                    <textarea className="w-full bg-slate-100 border-none rounded-lg px-4 py-3 text-slate-900 focus:ring-2 focus:ring-purple-500 transition-all h-32 resize-none outline-none" placeholder="I am interested in..."></textarea>
-                </div>
-
-                <button className="w-full bg-slate-900 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-800 transition-all group-hover:shadow-lg">
-                    <span>Send Message</span>
-                    <Send size={18} className="group-hover:translate-x-1 transition-transform" />
-                </button>
-            </form>
+                    {/* Gradient Button: The distinct "pop" of expression */}
+                    <button className="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 text-white font-bold py-5 mt-4 flex items-center justify-center gap-3 hover:opacity-90 transition-opacity uppercase tracking-widest text-xs shadow-lg shadow-purple-900/20">
+                        <span>Send Request</span>
+                        <ArrowRight size={16} />
+                    </button>
+                </form>
+            </div>
           </motion.div>
 
         </div>

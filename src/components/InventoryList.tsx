@@ -32,8 +32,6 @@ export default function InventoryList({ cars }: { cars: Car[] }) {
     <div>
       {/* --- MINIMALIST FILTER BAR --- */}
       <div className="mb-16 flex flex-col md:flex-row gap-8 md:items-end justify-between">
-        
-        {/* Search Input - Sharp & Underlined */}
         <div className="w-full md:w-1/3 group">
             <label className="text-xs uppercase tracking-widest text-gray-500 mb-2 block font-semibold">Search Collection</label>
             <div className="relative border-b border-white/20 group-focus-within:border-white transition-colors duration-300">
@@ -48,7 +46,6 @@ export default function InventoryList({ cars }: { cars: Car[] }) {
             </div>
         </div>
 
-        {/* Sort Dropdown - Minimalist */}
         <div className="w-full md:w-auto">
              <label className="text-xs uppercase tracking-widest text-gray-500 mb-2 block font-semibold">Sort By</label>
              <div className="relative border-b border-white/20 hover:border-white transition-colors duration-300 min-w-[200px]">
@@ -61,7 +58,6 @@ export default function InventoryList({ cars }: { cars: Car[] }) {
                     <option value="price-asc" className="bg-black text-white">Price: Low to High</option>
                     <option value="price-desc" className="bg-black text-white">Price: High to Low</option>
                 </select>
-                {/* Custom Chevron */}
                 <div className="absolute right-0 top-4 pointer-events-none">
                     <div className="h-[2px] w-[2px] bg-white rounded-full"></div>
                 </div>
@@ -82,11 +78,11 @@ export default function InventoryList({ cars }: { cars: Car[] }) {
               className="group cursor-pointer"
             >
                 <Link href={`/inventory/${car.slug?.current}`}>
-                    {/* CARD CONTAINER */}
-                    <div className="flex flex-col h-full">
+                    {/* CARD CONTAINER: Now has a background color to separate from page */}
+                    <div className="flex flex-col h-full bg-[#121212] border border-white/5 hover:border-white/20 hover:bg-[#161616] transition-all duration-500">
                         
-                        {/* Image - Sharp Edges, Zoom Effect */}
-                        <div className="aspect-[4/3] relative overflow-hidden bg-zinc-900 mb-6 border-b border-white/10">
+                        {/* Image */}
+                        <div className="aspect-[4/3] relative overflow-hidden bg-zinc-900 border-b border-white/5">
                             {car.imageUrl ? (
                             <img
                                 src={car.imageUrl}
@@ -96,36 +92,31 @@ export default function InventoryList({ cars }: { cars: Car[] }) {
                             ) : (
                                 <div className="w-full h-full flex items-center justify-center text-zinc-700 font-light uppercase tracking-widest text-xs">Awaiting Image</div>
                             )}
-                            
-                            {/* Subtle Gradient for depth */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
                         </div>
 
                         {/* Content */}
-                        <div className="flex flex-col flex-1">
-                            {/* Title & Price Row */}
+                        <div className="flex flex-col flex-1 p-6">
                             <div className="flex justify-between items-baseline mb-4">
-                                <h3 className="text-xl font-bold text-white tracking-tight">{car.name}</h3>
+                                <h3 className="text-lg font-bold text-white tracking-wide">{car.name}</h3>
                                 <p className="text-lg font-light text-white">${car.price?.toLocaleString()}</p>
                             </div>
                             
-                            <div className="h-px w-full bg-white/10 mb-5 group-hover:bg-white/30 transition-colors duration-500"></div>
+                            <div className="h-px w-full bg-white/5 mb-5 group-hover:bg-white/20 transition-colors duration-500"></div>
 
-                            {/* WIDGETS: Re-imagined as Technical Specs */}
                             <div className="grid grid-cols-2 gap-4 mb-8">
-                                <div className="flex items-center gap-3 text-gray-400">
-                                    <Gauge strokeWidth={1.5} className="w-4 h-4 text-gray-500" />
+                                <div className="flex items-center gap-3 text-gray-500">
+                                    <Gauge strokeWidth={1.5} className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors" />
                                     <span className="text-xs uppercase tracking-widest">{car.mileage?.toLocaleString()} Mi</span>
                                 </div>
-                                <div className="flex items-center gap-3 text-gray-400">
-                                    <Fuel strokeWidth={1.5} className="w-4 h-4 text-gray-500" />
+                                <div className="flex items-center gap-3 text-gray-500">
+                                    <Fuel strokeWidth={1.5} className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors" />
                                     <span className="text-xs uppercase tracking-widest">Gasoline</span>
                                 </div>
                             </div>
 
-                            {/* CTA Button - Matches Home Page Style */}
                             <div className="mt-auto">
-                                <button className="w-full py-4 bg-transparent border border-white/20 text-white font-bold text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-black hover:border-white transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+                                <button className="w-full py-4 bg-transparent border border-white/10 text-white font-bold text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-black hover:border-white transition-all duration-300 flex items-center justify-center gap-2">
                                     View Details
                                 </button>
                             </div>
