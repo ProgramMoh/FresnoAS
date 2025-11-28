@@ -87,10 +87,10 @@ export default function Home() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link href="/inventory" className="bg-white text-black px-10 py-4 font-bold text-sm uppercase tracking-widest hover:bg-gray-200 transition-colors duration-300">
+              <Link href="/inventory" className="rounded-sm bg-white text-black px-10 py-4 font-bold text-sm uppercase tracking-widest hover:bg-gray-200 transition-colors duration-300">
                 View Inventory
               </Link>
-              <Link href="/contact" className="border border-white/30 text-white px-10 py-4 font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
+              <Link href="/contact" className="rounded-sm border border-white/30 text-white px-10 py-4 font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
                 Contact Us
               </Link>
             </div>

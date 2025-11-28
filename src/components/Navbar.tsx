@@ -31,6 +31,8 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-8 font-medium">
           <Link href="/" className={linkClasses("/")}>Home</Link>
           <Link href="/inventory" className={linkClasses("/inventory")}>Inventory</Link>
+          <Link href="/financing" className={linkClasses("/financing")}>Financing</Link>
+          <Link href="/about" className={linkClasses("/about")}>About Us</Link>
           <Link href="/contact" className={linkClasses("/contact")}>Contact</Link>
         </div>
 
@@ -44,34 +46,20 @@ export default function Navbar() {
             <span className="text-sm">(559) 233-2001</span>
           </a>
           
-          {/* ANIMATED BORDER BUTTON */}
+          {/* --- HERO UI GLOW BUTTON --- */}
           <Link
-            href="/inventory"
-            className="relative px-5 py-2.5 rounded-lg font-bold text-sm text-white 
-                        shadow-md hover:shadow-lg
-                        transition-all duration-300
-                        hover:scale-105
-                        group
-                        overflow-hidden /* IMPORTANT: Contains the giant spinning background */
-                        
-                        /* 1. BOTTOM LAYER: The Spinning Conic Gradient */
-                        /* We make it huge (-inset-[500%]) so corners don't clip when spinning */
-                        before:absolute before:-inset-[500%] 
-                        /* Conic gradient repeated so the start/end flow smoothly */
-                        before:bg-[conic-gradient(from_0deg,theme(colors.purple.500),theme(colors.pink.500),theme(colors.red.500),theme(colors.purple.500))]
-                        before:animate-spin-slow
-                        before:opacity-0 group-hover:before:opacity-100 
-                        before:transition-opacity before:duration-500
-                        before:-z-20 
-
-                        /* 2. MIDDLE LAYER: The Slate Background Mask */
-                        /* Inset by 2px to create the border width */
-                        after:absolute after:inset-[2px] after:rounded-lg after:bg-slate-900 
-                        after:-z-10"
+            href="/pre-qualify"
+            className="relative inline-flex h-10 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-slate-50 hover:scale-105 transition-transform duration-300"
           >
-            {/* 3. TOP LAYER: The Text Content */}
-            <span className="relative z-10">View Cars</span>
+            {/* 1. The Spinning Gradient Background */}
+            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#6d31f7_0%,#fa419c_50%,#ff3131_100%)]" />
+
+            {/* 2. The Inner Content Mask */}
+            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-6 py-1 text-sm font-bold text-white backdrop-blur-3xl">
+              Get Pre-Qualified
+            </span>
           </Link>
+          
         </div>
       </div>
     </nav>
