@@ -1,5 +1,23 @@
 import Link from 'next/link';
-import { Car, Facebook, Instagram, Twitter, MapPin, Phone, Mail } from 'lucide-react';
+import { Car, Facebook, Instagram, MapPin, Phone, Mail } from 'lucide-react';
+
+// Custom TikTok Icon to match Lucide style
+const TikTokIcon = ({ size = 20, className = "" }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    className={className}
+  >
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
 
 export default function Footer() {
   return (
@@ -22,7 +40,7 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* COLUMN 3: VISIT US (Location Only) */}
+          {/* COLUMN 2: VISIT US */}
           <div>
             <h3 className="text-white font-bold mb-4">Visit Us</h3>
             <ul className="space-y-3 text-sm">
@@ -33,7 +51,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* COLUMN 4: CONNECT (Phone, Email, Socials) */}
+          {/* COLUMN 3: CONNECT */}
           <div>
             <h3 className="text-white font-bold mb-4">Connect</h3>
             <div className="flex gap-3 flex-wrap">
@@ -54,8 +72,9 @@ export default function Footer() {
               <a href="#" className="bg-slate-900 p-2 rounded-full hover:bg-slate-800 hover:text-white transition-all group">
                 <Instagram size={20} className="group-hover:text-pink-400 transition-colors" />
               </a>
+              {/* TikTok - Replaced Twitter - Hovers Cyan/Teal */}
               <a href="#" className="bg-slate-900 p-2 rounded-full hover:bg-slate-800 hover:text-white transition-all group">
-                <Twitter size={20} className="group-hover:text-sky-400 transition-colors" />
+                <TikTokIcon size={20} className="group-hover:text-cyan-400 transition-colors" />
               </a>
             </div>
           </div>
@@ -63,11 +82,26 @@ export default function Footer() {
         </div>
 
         {/* BOTTOM BAR */}
-        <div className="mt-12 pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} Fresno Auto Sales. All rights reserved.</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <Link href="/privacy" className="hover:text-slate-300">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-slate-300">Terms of Service</Link>
+        <div className="mt-12 pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+          
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 text-center md:text-left">
+            <p>© {new Date().getFullYear()} Fresno Auto Sales. All rights reserved.</p>
+            
+            {/* AGENCY CREDIT - Subtle & Premium */}
+            <span className="hidden md:block text-slate-800">|</span>
+            <a 
+                href="#" 
+                className="group flex items-center gap-1 hover:text-white transition-colors cursor-pointer"
+            >
+                <span className="opacity-40 group-hover:opacity-100 transition-opacity">Designed by</span>
+                <span className="font-bold text-slate-400 group-hover:text-purple-400 transition-colors tracking-wide">ZAYMAR</span>
+                <span className="font-light text-slate-500 group-hover:text-white transition-colors">Creatives</span>
+            </a>
+          </div>
+
+          <div className="flex gap-6">
+            <Link href="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-slate-300 transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
