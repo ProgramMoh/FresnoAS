@@ -94,7 +94,7 @@ export default function Footer() {
                 className="group flex items-center gap-1 hover:text-white transition-colors cursor-pointer"
             >
                 <span className="opacity-40 group-hover:opacity-100 transition-opacity">Designed by</span>
-                <span className="font-bold text-slate-400 group-hover:text-purple-400 transition-colors tracking-wide">ZAYMAR</span>
+                <span className="font-bold text-slate-400 group-hover:bg-gradient-to-r group-hover:from-red-500 group-hover:via-pink-500 group-hover:to-purple-500 group-hover:bg-clip-text group-hover:text-transparent transition-colors tracking-wide">ZAYMAR</span>
                 <span className="font-light text-slate-500 group-hover:text-white transition-colors">Creatives</span>
             </a>
           </div>
