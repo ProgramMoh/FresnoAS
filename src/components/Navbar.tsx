@@ -23,7 +23,7 @@ export default function Navbar() {
             <Car size={24} />
           </div>
           <span className="font-bold text-2xl text-slate-900 tracking-tight">
-            Fresno<span className="text-red-600">Auto</span>
+            Fresno<span className="text-red-600">AutoSales</span>
           </span>
         </Link>
 

@@ -32,7 +32,7 @@ export default function Footer() {
                 <Car size={20} />
               </div>
               <span className="font-bold text-xl text-white tracking-tight">
-                Fresno<span className="text-red-500">Auto</span>
+                Fresno<span className="text-red-500">AutoSales</span>
               </span>
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed">
