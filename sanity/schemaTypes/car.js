@@ -1,4 +1,3 @@
-// sanity/schemaTypes/car.js
 export const car = {
   name: 'car',
   title: 'Car Inventory',
@@ -14,6 +13,13 @@ export const car = {
       title: 'Slug (URL - click generate)',
       type: 'slug',
       options: { source: 'name' }
+    },
+    {
+      name: 'description',
+      title: 'Description',
+      type: 'text', // 'text' allows for multiple lines (paragraphs)
+      rows: 4,      // Sets the default height of the input box
+      description: 'Write a detailed summary of the vehicle condition, history, and key features.',
     },
     {
       name: 'status',

@@ -25,6 +25,12 @@
         "title": "Slug (URL - click generate)"
       },
       {
+        "rows": 4,
+        "description": "Write a detailed summary of the vehicle condition, history, and key features.",
+        "name": "description",
+        "type": "text"
+      },
+      {
         "options": {
           "list": [
             {
