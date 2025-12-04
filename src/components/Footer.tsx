@@ -90,7 +90,9 @@ export default function Footer() {
             {/* AGENCY CREDIT - Subtle & Premium */}
             <span className="hidden md:block text-slate-800">|</span>
             <a 
-                href="#" 
+                href="https://zaymar.xyz"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group flex items-center gap-1 hover:text-white transition-colors cursor-pointer"
             >
                 <span className="opacity-40 group-hover:opacity-100 transition-opacity">Designed by</span>
