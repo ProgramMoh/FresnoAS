@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google"; 
 import "./globals.css";
 import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/next"
 
 const manrope = Manrope({ 
   subsets: ["latin"], 
@@ -28,6 +29,7 @@ export default function RootLayout({
       */}
       <body className={`${manrope.variable}`}>
         {children}
+                <Analytics />
       <Footer />
       </body>
     </html>
