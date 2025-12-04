@@ -7,10 +7,8 @@ export default defineConfig({
   name: 'default',
   title: 'Fresno Auto Sales',
 
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  appId: process.env.NEXT_PUBLIC_SANITY_APPID,
-
+  projectId: 'ygeoeveq',
+  dataset: 'production',
 
   basePath: '/studio', // This makes the dashboard live at /studio
 
