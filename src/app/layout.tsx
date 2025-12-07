@@ -12,7 +12,7 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   title: "Fresno Auto Sales | First-Time Buyer Specialists",
-  description: "Affordable cars for students in Fresno. No hidden fees.",
+  description: "Affordable cars in Fresno. No hidden fees.",
 };
 
 export default function RootLayout({

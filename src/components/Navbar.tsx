@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { Car, Phone, Menu, X } from 'lucide-react';
+import { Phone, Menu, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -11,7 +11,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   // Close menu when a link is clicked
-  const handleLinkClick = () => setIsOpen(false);
+  const handleLinkClick = () => setIsOpen(false);        
 
   const linkClasses = (path: string) =>
     `block py-3 md:py-0 text-lg md:text-base transition-colors hover:text-pink-500 ${
@@ -25,14 +25,12 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 md:px-6 h-20 flex justify-between items-center relative z-50 bg-white">
         
         {/* --- LOGO AREA --- */}
-        <Link href="/" className="flex items-center gap-2 group shrink-0" onClick={handleLinkClick}>
-          <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-1.5 md:p-2 rounded-xl text-white transform group-hover:rotate-12 transition-transform duration-300">
-            <Car size={20} className="md:w-6 md:h-6" />
-          </div>
-          <span className="font-bold text-lg md:text-2xl text-slate-900 tracking-tight">
-            Fresno<span className="text-red-600">Auto</span>
-            <span className="hidden sm:inline">Sales</span>
-          </span>
+        <Link href="/" className="flex items-center shrink-0" onClick={handleLinkClick}>
+<img 
+            src="/logo.png" 
+            alt="Fresno Auto Sales Logo" 
+            className="h-10 md:h-14 w-auto object-contain hover:opacity-90 transition-opacity" 
+          />
         </Link>
 
         {/* --- DESKTOP LINKS --- */}
