@@ -22,14 +22,14 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white border-b border-slate-200 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 h-20 flex justify-between items-center relative z-50 bg-white">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 min-h-[80px] flex justify-between items-center relative z-50 bg-white">
         
         {/* --- LOGO AREA --- */}
-        <Link href="/" className="flex items-center shrink-0" onClick={handleLinkClick}>
-<img 
+        <Link href="/" className="flex items-center shrink-0 py-2" onClick={handleLinkClick}>
+          <img 
             src="/logo.png" 
             alt="Fresno Auto Sales Logo" 
-            className="h-10 md:h-14 w-auto object-contain hover:opacity-90 transition-opacity" 
+            className="h-12 md:h-16 w-auto object-contain hover:opacity-90 transition-opacity" 
           />
         </Link>
 
@@ -86,7 +86,8 @@ export default function Navbar() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="md:hidden bg-white border-b border-slate-200 overflow-hidden absolute w-full left-0 top-20 shadow-xl z-50"
+              // Changed 'top-20' to 'top-[100%]' so it always sits exactly below the navbar, regardless of navbar height
+              className="md:hidden bg-white border-b border-slate-200 overflow-hidden absolute w-full left-0 top-[100%] shadow-xl z-50"
             >
               <div className="px-6 py-6 flex flex-col space-y-2">
                 <Link href="/" onClick={handleLinkClick} className={linkClasses("/")}>Home</Link>
@@ -112,7 +113,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 top-20 z-40 bg-black/20 backdrop-blur-[2px] md:hidden"
+              className="fixed inset-0 top-[80px] z-40 bg-black/20 backdrop-blur-[2px] md:hidden"
             />
           </>
         )}
