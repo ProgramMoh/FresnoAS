@@ -27,7 +27,7 @@ export default function Navbar() {
         {/* --- LOGO AREA --- */}
         <Link href="/" className="flex items-center shrink-0 py-2" onClick={handleLinkClick}>
           <img 
-            src="/logo.png" 
+            src="/FASlogo.png" 
             alt="Fresno Auto Sales Logo" 
             className="h-12 md:h-16 w-auto object-contain hover:opacity-90 transition-opacity" 
           />
