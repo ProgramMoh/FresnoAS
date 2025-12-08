@@ -28,11 +28,10 @@ export default function Footer() {
           {/* COLUMN 1: BRANDING */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-1.5 rounded-lg text-white">
-                <Car size={20} />
-              </div>
               <span className="font-bold text-xl text-white tracking-tight">
-                Fresno<span className="text-red-500">AutoSales</span>
+                <span className="text-purple-500">Fresno</span>
+                <span className="text-red-500">Auto</span>
+                <span className="text-gray-100">Sales</span>
               </span>
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed">
