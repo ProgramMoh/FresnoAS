@@ -61,8 +61,8 @@ export default function HomeContent({ cars }: { cars: any[] }) {
               The New Standard
             </span>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
-              Driven by <br /> 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Excellence.</span>
+              Fresno's Choice for<br /> 
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Premium Used Cars.</span>
             </h1>
             <p className="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light">
               Premium vehicles at prices you'll love. Experience the transparency of Fresno Auto Sales.

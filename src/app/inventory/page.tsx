@@ -1,6 +1,12 @@
 import { client } from "@/sanity/client";
 import InventoryList from "@/components/InventoryList";
 import Navbar from "@/components/Navbar";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Used Car Inventory | Cars for Sale in Fresno, CA",
+  description: "Browse our selection of inspected used cars, trucks, and SUVs in Fresno. Honda, Toyota, Ford, and luxury models available with financing.",
+};
 
 const ALL_CARS_QUERY = `*[_type == "car"] {
   _id,

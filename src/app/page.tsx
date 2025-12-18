@@ -28,6 +28,47 @@ export default async function Home() {
     cars = [];
   }
 
+    const businessSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'AutoDealer',
+    name: 'Fresno Auto Sales',
+    url: 'https://fresnoautosales.com',
+    logo: 'https://fresnoautosales.com/FASlogo.png',
+    image: 'https://fresnoautosales.com/dealershipHero.png', 
+    description: 'Premier used car dealership in Fresno, CA. We offer inspected vehicles, transparent pricing, and financing for all credit types.',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '3808 E Belmont Ave',
+      addressLocality: 'Fresno',
+      addressRegion: 'CA',
+      postalCode: '93702',
+      addressCountry: 'US'
+    },
+    telephone: '+15592332001',
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        opens: '09:30',
+        closes: '18:00'
+      }
+    ],
+    priceRange: '$-$$$',
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: '36.7503836', 
+      longitude: '-119.7604842'
+    }
+  };
+
   // Pass the data down to the Client Component
-  return <HomeContent cars={cars} />;
+    return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
+      />
+      <HomeContent cars={cars} />
+    </>
+  );
 }

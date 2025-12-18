@@ -4,6 +4,13 @@ import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
 import { CheckCircle, ArrowRight, Wallet, Building2 } from "lucide-react";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "Bad Credit Car Loans & Auto Financing | Fresno Auto Sales",
+  description: "Get pre-qualified for an auto loan in Fresno. We work with Chase, Wells Fargo, and more to help first-time buyers and bad credit history.",
+};
 
 export default function FinancingPage() {
   return (

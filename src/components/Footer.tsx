@@ -45,7 +45,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-purple-500 shrink-0 mt-0.5" />
-                <span>3808 E Belmont Av, Fresno, CA 93702</span>
+                <span>3808 E Belmont Ave, Fresno, CA 93702</span>
               </li>
             </ul>
           </div>
