@@ -1,9 +1,10 @@
 import { client } from "@/sanity/client";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
-import { ChevronLeft, Phone, ShieldCheck, Gauge, CreditCard, Calendar, ArrowRight, ImageIcon } from "lucide-react";
+import { ChevronLeft, Phone, ShieldCheck, Gauge, CreditCard, Calendar, ArrowRight } from "lucide-react";
+import { Metadata } from "next";
 
-// --- INTERFACE UPDATE ---
+// --- INTERFACE ---
 interface CarDetails {
   name: string;
   price: number;
@@ -14,17 +15,39 @@ interface CarDetails {
   features: string[];
   year?: string; 
   make?: string;
-  status?: string; // Added status field
+  status?: string;
 }
 
-export const revalidate = 0;
+export const revalidate = 0; // Ensure fresh data
 
+// --- 1. DYNAMIC METADATA (SEO) ---
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  
+  const car = await client.fetch(`
+    *[_type == "car" && slug.current == $slug][0] {
+      name,
+      description,
+      "imageUrl": mainImage.asset->url
+    }
+  `, { slug });
+
+  if (!car) return { title: "Vehicle Not Found" };
+
+  return {
+    title: car.name,
+    description: car.description ? car.description.slice(0, 160) : `View details for this ${car.name}.`,
+    openGraph: {
+      images: [car.imageUrl],
+    },
+  };
+}
+
+// --- 2. MAIN PAGE COMPONENT ---
 export default async function CarDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
   
   const { slug } = await params; 
 
-  // --- QUERY UPDATE ---
-  // Added: status
   const car: CarDetails = await client.fetch(`
     *[_type == "car" && slug.current == $slug][0] {
       name,
@@ -52,27 +75,55 @@ export default async function CarDetailsPage({ params }: { params: Promise<{ slu
     </div>
   );
 
-  // Helper Logic for Status Color
+  // --- HELPERS ---
   const getStatusColor = (status: string) => {
     const normalized = status?.toLowerCase() || '';
     if (normalized.includes('sold')) return 'bg-red-500';
     if (normalized.includes('pending')) return 'bg-orange-500';
-    return 'bg-emerald-500'; // Default for "Available"
+    return 'bg-emerald-500';
   };
 
-  function capitalizeFirstLetter(str: string): string {
-  if (str.length === 0) {
-    return ""; // Handle empty strings
-  }
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
+  const capitalizeFirstLetter = (str: string): string => {
+    if (!str || str.length === 0) return "";
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
 
   const statusLabel = car.status || "Available";
   const statusIndicatorColor = getStatusColor(statusLabel);
 
+  // --- JSON-LD FOR GOOGLE ---
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Vehicle',
+    name: car.name,
+    image: car.imageUrl,
+    description: car.description,
+    mileageFromOdometer: {
+      '@type': 'QuantitativeValue',
+      value: car.mileage,
+      unitCode: 'SMI'
+    },
+    offers: {
+      '@type': 'Offer',
+      price: car.price,
+      priceCurrency: 'USD',
+      availability: statusLabel.toLowerCase() === 'sold' ? 'https://schema.org/Sold' : 'https://schema.org/InStock',
+      seller: {
+        '@type': 'AutoDealer',
+        name: 'Fresno Auto Sales',
+      }
+    }
+  };
+
   return (
     <div className="bg-luxury-black min-h-screen text-white selection:bg-purple-500/30 overflow-x-hidden relative">
       <Navbar />
+      
+      {/* Inject SEO Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 pt-32">
         

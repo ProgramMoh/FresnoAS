@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google"; 
+import { Manrope, Inter } from "next/font/google"; 
 import "./globals.css";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next"
@@ -9,10 +9,30 @@ const manrope = Manrope({
   variable: "--font-manrope",
   display: "swap" 
 });
+const inter = Inter({ subsets: ["latin"] });
+
 
 export const metadata: Metadata = {
-  title: "Fresno Auto Sales | First-Time Buyer Specialists",
-  description: "Affordable cars in Fresno. No hidden fees.",
+  metadataBase: new URL('https://fresnoautosales.com'), // domain
+  title: {
+    default: "Fresno Auto Sales | Value without Compromise",
+    template: "%s | Fresno Auto Sales", // e.g. "Inventory | Fresno Auto Sales"
+  },
+  description: "Premium used vehicles in Fresno, CA. We offer inspected quality, transparent pricing, and stress-free financing for all budgets.",
+  keywords: ["Used Cars Fresno", "Auto Sales Fresno", "Car Dealership", "Bad Credit Financing", "Used Honda", "Used Toyota"],
+  authors: [{ name: "Fresno Auto Sales" }],
+  openGraph: {
+    title: "Fresno Auto Sales",
+    description: "Value without Compromise. Premium vehicles at prices you'll love.",
+    url: 'https://fresnoautosales.com',
+    siteName: 'Fresno Auto Sales',
+    locale: 'en_US',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
