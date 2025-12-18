@@ -42,6 +42,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="google-site-verification" content="SjjVVTK58aD-B-q4Xo77WfFH8usgQVwUZQsO9gQ2G7Y" />
+      </head>
       {/* MASTER RULE: 
         1. bg-slate-50: Sets the global background to soft gray.
         2. text-slate-900: Sets global text to dark gray.
