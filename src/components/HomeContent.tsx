@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Star, MapPin, BadgeCheck, Wallet } from 'lucide-react';
 import Navbar from '@/components/Navbar';
+import CarImageWithFrame from "@/components/CarImageWithFrame"; // Add import at top
 
 // --- CONFIGURATION ---
 const HERO_IMAGES = [
@@ -133,7 +134,7 @@ export default function HomeContent({ cars }: { cars: any[] }) {
             {cars.length === 0 && (
                 [1,2,3].map(i => (
                     <div key={i} className="animate-pulse">
-                        <div className="bg-gray-200 aspect-[4/3] mb-4"></div>
+                        <div className="bg-gray-200 aspect-video mb-4"></div>
                         <div className="h-6 bg-gray-200 w-3/4 mb-2"></div>
                     </div>
                 ))
@@ -149,19 +150,13 @@ export default function HomeContent({ cars }: { cars: any[] }) {
                 className="group cursor-pointer"
               >
                 <Link href={`/inventory/${car.slug?.current}`}>
-                  <div className="overflow-hidden mb-6 relative aspect-[4/3]">
-                    {car.imageUrl ? (
-                      <img 
-                        src={car.imageUrl} 
-                        alt={car.name} 
-                        className="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 ease-in-out"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gray-100 flex items-center justify-center text-gray-400">No Image</div>
-                    )}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-500"></div>
-                  </div>
-
+                <div className="mb-6 relative aspect-video group">
+                  <CarImageWithFrame 
+                    src={car.imageUrl} 
+                    alt={car.name} 
+                    className="w-full h-full"
+                  />
+                </div>
                   <div className="flex justify-between items-start border-b border-gray-200 pb-4">
                     <div>
                         <h3 className="text-xl font-bold mb-1">{car.name}</h3>

@@ -1,8 +1,9 @@
 import { client } from "@/sanity/client";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
-import { ChevronLeft, Phone, ShieldCheck, Gauge, CreditCard, Calendar, ArrowRight } from "lucide-react";
+import { ChevronLeft, Phone, Gauge, CreditCard, Calendar, ArrowRight } from "lucide-react";
 import { Metadata } from "next";
+import ImageGallery from "@/components/ImageGallery"; // Import the new component
 
 // --- INTERFACE ---
 interface CarDetails {
@@ -138,51 +139,16 @@ export default async function CarDetailsPage({ params }: { params: Promise<{ slu
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
             
-            {/* --- LEFT COLUMN: Images & Description (Span 7) --- */}
-            <div className="lg:col-span-7 flex flex-col gap-12">
-                
-                {/* 1. Main Hero Image */}
-                <div className="aspect-[4/3] relative overflow-hidden border-b border-white/10 bg-[#111] group">
-                    {car.imageUrl ? (
-                        <img 
-                            src={car.imageUrl} 
-                            alt={car.name} 
-                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-90 group-hover:opacity-100" 
-                        />
-                    ) : (
-                        <div className="w-full h-full bg-[#111] flex items-center justify-center text-gray-700 uppercase tracking-widest text-xs">No Image Available</div>
-                    )}
-                    
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                    
-                    {/* Badge */}
-                    <div className="absolute bottom-6 left-6">
-                         <div className="bg-[#080808]/80 backdrop-blur-md border border-white/10 text-white px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-2">
-                            <ShieldCheck size={14} className="text-purple-400" /> 
-                            Certified Inspection
-                         </div>
-                    </div>
-                </div>
+            {/* --- LEFT COLUMN: Interactive Gallery --- */}
+            <div className="lg:col-span-7">
+                <ImageGallery 
+                    mainImage={car.imageUrl} 
+                    gallery={car.gallery} 
+                    carName={car.name} 
+                />
 
-                {/* 2. GALLERY GRID */}
-                {car.gallery && car.gallery.length > 0 && (
-                    <div className="grid grid-cols-2 gap-4">
-                        {car.gallery.map((image, index) => (
-                            <div key={index} className="aspect-[4/3] relative overflow-hidden border border-white/5 bg-[#111] group cursor-pointer">
-                                <img 
-                                    src={image} 
-                                    alt={`${car.name} view ${index + 1}`} 
-                                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
-                                />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
-                            </div>
-                        ))}
-                    </div>
-                )}
-
-                {/* 3. Description Box */}
-                <div className="bg-[#080808] p-8 border border-white/5 relative">
+                {/* Description Box (Moved below gallery) */}
+                <div className="bg-[#080808] p-8 border border-white/5 relative mt-12">
                     <div className="flex items-center gap-4 mb-6">
                         <div className="h-px w-8 bg-gradient-to-r from-purple-500 to-red-500"></div>
                         <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500">

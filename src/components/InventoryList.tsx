@@ -4,6 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Search, ArrowRight, Gauge, Fuel } from "lucide-react";
+import CarImageWithFrame from "@/components/CarImageWithFrame"; // Add import at top
+
 
 interface Car {
   _id: string;
@@ -82,19 +84,13 @@ export default function InventoryList({ cars }: { cars: Car[] }) {
                     <div className="flex flex-col h-full bg-[#121212] border border-white/5 hover:border-white/20 hover:bg-[#161616] transition-all duration-500">
                         
                         {/* Image */}
-                        <div className="aspect-[4/3] relative overflow-hidden bg-zinc-900 border-b border-white/5">
-                            {car.imageUrl ? (
-                            <img
-                                src={car.imageUrl}
-                                alt={car.name}
-                                className="w-full h-full object-cover transform group-hover:scale-105 transition duration-1000 ease-in-out opacity-90 group-hover:opacity-100"
+                        <div className="aspect-video relative mb-6">
+                            <CarImageWithFrame 
+                              src={car.imageUrl} 
+                              alt={car.name} 
+                              className="w-full h-full"
                             />
-                            ) : (
-                                <div className="w-full h-full flex items-center justify-center text-zinc-700 font-light uppercase tracking-widest text-xs">Awaiting Image</div>
-                            )}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
                         </div>
-
                         {/* Content */}
                         <div className="flex flex-col flex-1 p-6">
                             <div className="flex justify-between items-baseline mb-4">
